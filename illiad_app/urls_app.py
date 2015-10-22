@@ -9,6 +9,8 @@ urlpatterns = patterns('',
 
     url( r'^info/$',  'illiad_app.views.info', name='info_url' ),
 
+    url( r'^v2/make_request/$',  'illiad_app.views.make_request_v2', name='request_v2' ),
+
     url( r'^$',  RedirectView.as_view(pattern_name='info_url') ),
 
     )

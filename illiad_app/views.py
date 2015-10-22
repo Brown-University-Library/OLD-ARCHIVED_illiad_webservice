@@ -14,4 +14,10 @@ log = logging.getLogger(__name__)
 def info( request ):
     """ Returns simplest response. """
     now = datetime.datetime.now()
-    return HttpResponse( '<p>hi</p> <p>( %s )</p>' % now )
+    return HttpResponse( '<p>info</p> <p>( %s )</p>' % now )
+
+
+def make_request_v2( request ):
+    """ Handles current (October 2015) easyBorrow controller illiad call. """
+    now = datetime.datetime.now()
+    return HttpResponse( '<p>request_v2</p> <p>( %s )</p>' % now )
