@@ -21,6 +21,7 @@ def info( request ):
 
 def make_request_v2( request ):
     """ Handles current (October 2015) easyBorrow controller illiad call. """
+    log.debug( 'starting' )
     if v2_helper.check_validity( request ) is False:
         return HttpResponseBadRequest( 'Please stop.' )
     now = datetime.datetime.now()
