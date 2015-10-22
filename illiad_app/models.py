@@ -11,3 +11,16 @@ from django.utils.text import slugify
 
 log = logging.getLogger(__name__)
 
+
+class V2_Helper( object ):
+    """ Handles easyBorrow v2 request. """
+
+    def __init__( self ):
+        self.place_holder = 'foo'
+
+    def check_validity( self, request ):
+        """ Checks post and auth_key and ip.
+            Called by make_request_v2() """
+        return_val = False
+        log.debug( 'return_val, `%s`' % return_val )
+        return return_val
