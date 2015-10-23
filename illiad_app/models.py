@@ -44,3 +44,5 @@ class V2_Helper( object ):
         return_val = True if ( return_val is None ) else False
         log.debug( 'return_val, `%s`' % return_val )
         return return_val
+
+    # end class V2_Helper()
