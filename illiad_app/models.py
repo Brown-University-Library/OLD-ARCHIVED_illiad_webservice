@@ -57,7 +57,7 @@ class V2_Helper( object ):
         request_key = self._get_request_key( ill, request.POST['openurl'] )
         if request_key['blocked'] is True:
             v2_response_dct = { 'status': 'login_failed_possibly_blocked' }
-            log.debug( 'v2_response_dct, `%s`' % v2_response_dct )
+            log.debug( 'blocked v2_response_dct, `%s`' % v2_response_dct )
         else:
             submission_response_dct = self._make_request( ill, request_key )
             v2_response_dct = self.build_v2_submitted_response( submission_response_dct )
@@ -106,16 +106,5 @@ class V2_Helper( object ):
             v2_response_dct = { 'status': 'submission_failed', 'message': 'see illiad-webservice logs for more info' }
         log.debug( 'v2_response_dct, `%s`' % pprint.pformat(v2_response_dct) )
         return v2_response_dct
-
-    # def run_request( self, request ):
-    #     """ Runs module call.
-    #         Called by views.make_request_v2() """
-    #     ill = IlliadSession( self.REMOTE_AUTH_URL, self.REMOTE_AUTH_KEY, request.POST['username'] )
-    #     ill.login()
-    #     request_key = ill.get_request_key( request.POST['openurl'] )
-    #     log.debug( 'request_key, `%s`' % pprint.pformat(request_key) )
-    #     submission_response_dct = ill.make_request( request_key )
-    #     log.debug( 'submission_response_dct, `%s`' % pprint.pformat(submission_response_dct) )
-    #     return 'foo'
 
     # end class V2_Helper()

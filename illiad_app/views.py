@@ -14,16 +14,19 @@ v2_helper = V2_Helper()
 
 
 def info( request ):
-    """ Returns simplest response. """
+    """ Returns simple response. """
     now = datetime.datetime.now()
-    return HttpResponse( '<p>info</p> <p>( %s )</p>' % now )
+    referrer = request.META.get( 'HTTP_REFERER', 'unavailable' )
+    dct = { 'date_time': unicode(now), 'ip': referrer }
+    output = json.dumps( dct, sort_keys=True, indent=2 )
+    return HttpResponse( output, content_type='application/json; charset=utf-8' )
 
 
 def make_request_v2( request ):
     """ Handles current (October 2015) easyBorrow controller illiad call. """
     log.debug( 'starting' )
     if v2_helper.check_validity( request ) is False:
-        return HttpResponseBadRequest( 'Please stop.' )
-    v2_helper.run_request( request )
-    now = datetime.datetime.now()
-    return HttpResponse( '<p>request_v2</p> <p>( %s )</p>' % now )
+        return HttpResponseBadRequest( 'Bad Request' )
+    v2_response_dct = v2_helper.run_request( request )
+    output = json.dumps( v2_response_dct, sort_keys=True, indent=2 )
+    return HttpResponse( output, content_type='application/json; charset=utf-8' )
