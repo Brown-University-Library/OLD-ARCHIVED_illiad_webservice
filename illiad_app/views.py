@@ -24,5 +24,6 @@ def make_request_v2( request ):
     log.debug( 'starting' )
     if v2_helper.check_validity( request ) is False:
         return HttpResponseBadRequest( 'Please stop.' )
+    v2_helper.run_request( request )
     now = datetime.datetime.now()
     return HttpResponse( '<p>request_v2</p> <p>( %s )</p>' % now )

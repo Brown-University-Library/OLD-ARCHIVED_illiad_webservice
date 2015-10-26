@@ -19,7 +19,7 @@ class ClientV2_Test( TestCase ):
             response.content )
 
     def test__check_bad_post_params( self ):
-        """ Tests title solr query. """
+        """ Checks POST with bad params. """
         c = Client()
         response = c.post( '/v2/make_request/', {'aa': 'foo_a', 'bb': 'foo_b'} )
         self.assertEqual(
@@ -30,7 +30,7 @@ class ClientV2_Test( TestCase ):
             response.content )
 
     def test__check_good_post_params( self ):
-        """ Tests title solr query. """
+        """ Checks POST with good params. """
         c = Client()
         response = c.post( '/v2/make_request/', {'auth_key': 'foo_a', 'openurl': 'foo_b', 'request_id': 'foo_c', 'username': 'foo_d'} )
         self.assertEqual(

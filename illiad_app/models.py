@@ -63,7 +63,7 @@ class V2_Helper( object ):
             v2_response_dct = self.build_v2_submitted_response( submission_response_dct )
         return v2_response_dct
 
-    def _login( self, request, ill ):
+    def _login( self, ill ):
         """ Logs user in to ILLiad.
             Called by run_request() """
         try:
