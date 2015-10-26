@@ -15,9 +15,10 @@ v2_helper = V2_Helper()
 
 def info( request ):
     """ Returns simple response. """
+    doc_url = os.environ['ILLIAD_WS__DOCS']
     now = datetime.datetime.now()
     referrer = request.META.get( 'REMOTE_ADDR', 'unavailable' )
-    dct = { 'date_time': unicode(now), 'ip': referrer }
+    dct = { 'date_time': unicode(now), 'docs': doc_url, 'ip': referrer }
     output = json.dumps( dct, sort_keys=True, indent=2 )
     return HttpResponse( output, content_type='application/json; charset=utf-8' )
 
