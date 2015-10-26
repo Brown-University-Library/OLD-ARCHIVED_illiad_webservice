@@ -18,6 +18,7 @@ class V2_Helper( object ):
     """ Handles easyBorrow v2 request. """
 
     def __init__( self ):
+        self.API_KEY = os.environ['ILLIAD_WS__API_AUTH_KEY']
         self.REMOTE_AUTH_URL = os.environ['ILLIAD_WS__REMOTE_AUTH_URL']
         self.REMOTE_AUTH_KEY = os.environ['ILLIAD_WS__REMOTE_AUTH_KEY']  # not the api-key
 
@@ -28,9 +29,11 @@ class V2_Helper( object ):
         log.debug( 'starting check_validity()' )
         return_val = False
         if request.method == 'POST':
-            log.debug( 'method was POST' )
             if self.check_params( request ) is True:
-                return_val = True
+                if request.POST['auth_key'] == self.API_KEY:
+                    return_val = True
+                else:
+                    log.debug( 'ip, `%s`' % request.META.get( 'HTTP_REFERER', 'unavailable' ) )
         log.debug( 'return_val, `%s`' % return_val )
         return return_val
 
@@ -38,7 +41,6 @@ class V2_Helper( object ):
         """ Checks params.
             Called by check_validity() """
         log.debug( 'starting check_params()' )
-        log.debug( 'request.POST.keys(), `%s`' % request.POST.keys() )
         return_val = None
         for param in [ 'auth_key', 'openurl', 'request_id', 'username' ]:
             log.debug( 'on param, `%s`' % param )
