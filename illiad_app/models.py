@@ -33,7 +33,7 @@ class V2_Helper( object ):
                 if request.POST['auth_key'] == self.API_KEY:
                     return_val = True
                 else:
-                    log.debug( 'ip, `%s`' % request.META.get( 'HTTP_REFERER', 'unavailable' ) )
+                    log.debug( 'ip, `%s`' % request.META.get( 'REMOTE_ADDR', 'unavailable' ) )
         log.debug( 'return_val, `%s`' % return_val )
         return return_val
 

@@ -16,7 +16,7 @@ v2_helper = V2_Helper()
 def info( request ):
     """ Returns simple response. """
     now = datetime.datetime.now()
-    referrer = request.META.get( 'HTTP_REFERER', 'unavailable' )
+    referrer = request.META.get( 'REMOTE_ADDR', 'unavailable' )
     dct = { 'date_time': unicode(now), 'ip': referrer }
     output = json.dumps( dct, sort_keys=True, indent=2 )
     return HttpResponse( output, content_type='application/json; charset=utf-8' )
