@@ -12,7 +12,7 @@ Example response:
 { "status": "submission_successful", "transaction_number": "2468" }
 """
 
-import os, pprint
+import os, pprint, random
 import requests
 
 
@@ -21,7 +21,7 @@ API_URL = os.environ['ILLIAD_WS_SAMPLE_SCRIPT__API_URL']
 API_AUTH_KEY = os.environ['ILLIAD_WS_SAMPLE_SCRIPT__API_AUTH_KEY']
 USERNAME = os.environ['ILLIAD_WS_SAMPLE_SCRIPT__TEST_USERNAME']
 OPENURL = os.environ['ILLIAD_WS_SAMPLE_SCRIPT__TEST_OPENURL']
-REQUEST_ID = '1234'  # used to match webservice logging with easyborrow-controller, or other, logging
+REQUEST_ID = random.randint( 1111, 9999 )  # used to easily see web-service log entries for a single request
 
 ## hit api
 params = {
