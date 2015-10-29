@@ -23,7 +23,6 @@ class V2_Helper( object ):
         self.REMOTE_AUTH_URL = os.environ['ILLIAD_WS__REMOTE_AUTH_URL']
         self.REMOTE_AUTH_KEY = os.environ['ILLIAD_WS__REMOTE_AUTH_KEY']  # not the api-key
 
-
     def check_validity( self, request ):
         """ Checks post, auth_key, ip, & params.
             Called by make_request_v2() """
