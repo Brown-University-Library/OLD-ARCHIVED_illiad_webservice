@@ -41,6 +41,7 @@ class V2_Helper( object ):
         """ Checks params.
             Called by check_validity() """
         log.debug( '%s - starting check_params()' % self.request_id )
+        log.debug( '%s - request.POST, `%s`' % (self.request_id, request.POST) )
         return_val = None
         for param in [ 'auth_key', 'openurl', 'request_id', 'username' ]:
             log.debug( '%s - on param, `%s`' % (self.request_id, param) )
@@ -50,6 +51,20 @@ class V2_Helper( object ):
         return_val = True if ( return_val is None ) else False
         log.debug( '%s - return_val, `%s`' % (self.request_id, return_val) )
         return return_val
+
+    # def check_params( self, request ):
+    #     """ Checks params.
+    #         Called by check_validity() """
+    #     log.debug( '%s - starting check_params()' % self.request_id )
+    #     return_val = None
+    #     for param in [ 'auth_key', 'openurl', 'request_id', 'username' ]:
+    #         log.debug( '%s - on param, `%s`' % (self.request_id, param) )
+    #         if param not in request.POST.keys():
+    #             return_val = False
+    #             break
+    #     return_val = True if ( return_val is None ) else False
+    #     log.debug( '%s - return_val, `%s`' % (self.request_id, return_val) )
+    #     return return_val
 
     def run_request( self, request ):
         """ Runs module call.
