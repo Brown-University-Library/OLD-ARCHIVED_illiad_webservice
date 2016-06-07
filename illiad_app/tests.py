@@ -10,26 +10,18 @@ class ClientV2_Test( TestCase ):
     """ Tests easyBorrow-api v2 """
 
     def test__check_bad_method( self ):
-        """ Checks GET (api requires POST). """
+        """ GET (api requires POST) should return 400. """
         c = Client()
         response = c.get( '/v2/make_request/', {'aa': 'foo_a', 'bb': 'foo_b'} )
-        self.assertEqual(
-            400,
-            response.status_code )
-        self.assertEqual(
-            'Please stop.',
-            response.content )
+        self.assertEqual( 400, response.status_code )
+        self.assertEqual( 'Bad Request', response.content )
 
     def test__check_bad_post_params( self ):
-        """ Checks POST with bad params. """
+        """ POST with bad params should return 400. """
         c = Client()
         response = c.post( '/v2/make_request/', {'aa': 'foo_a', 'bb': 'foo_b'} )
-        self.assertEqual(
-            400,
-            response.status_code )
-        self.assertEqual(
-            'Please stop.',
-            response.content )
+        self.assertEqual( 400, response.status_code )
+        self.assertEqual( 'Bad Request', response.content )
 
     # def test__check_good_post_params__known_user( self ):
     #     """ POST with good params should submit a request and return a transaction number.
